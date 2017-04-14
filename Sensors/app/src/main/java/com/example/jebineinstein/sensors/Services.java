@@ -97,36 +97,21 @@ public class Services extends Service implements SensorEventListener {
     }
 
     void calloff(){
-        if(a1){
             if(a1){
                 builder.setOngoing(true);
                 sensorManager.registerListener(this, sensor, SensorManager.SENSOR_DELAY_NORMAL);
                 a = "On";
+                a1=false;
             }
             else{
                 builder.setOngoing(false);
                 sensorManager.unregisterListener(this);
                 a = "Off";
+                a1=true;
             }
-            a1=false;
+
             builder.setContentText("Proximity Sensor is "+a);
             notificationManager.notify(324255, builder.build());
-        }
-        else{
-            if(a1){
-                builder.setOngoing(true);
-                sensorManager.registerListener(this, sensor, SensorManager.SENSOR_DELAY_NORMAL);
-                a = "On";
-            }
-            else{
-                builder.setOngoing(false);
-                sensorManager.unregisterListener(this);
-                a = "Off";
-            }
-            a1=true;
-            builder.setContentText("Proximity Sensor is "+a);
-            notificationManager.notify(324255, builder.build());
-        }
     }
 
 }

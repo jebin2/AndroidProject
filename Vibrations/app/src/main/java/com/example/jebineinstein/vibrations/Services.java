@@ -72,33 +72,20 @@ public class Services extends Service{
     }
 
     private void Vibrate() {
-        if(a1){
-            v.vibrate(new long[]{0, 1000, 0},0);
             if(a1){
+                v.vibrate(new long[]{0, 1000, 0},0);
+                a1=false;
                 mBuilder.setOngoing(true);
                 a = "On";
             }
             else{
+                v.cancel();
                 mBuilder.setOngoing(false);
                 a = "Off";
+                a1=true;
             }
-            a1=false;
+
             mBuilder.setContentText("Vibration is "+a);
             mNotificationManager.notify(324255, mBuilder.build());
-        }
-        else{
-            v.cancel();
-            if(a1){
-                mBuilder.setOngoing(true);
-                a = "On";
-            }
-            else{
-                mBuilder.setOngoing(false);
-                a = "Off";
-            }
-            a1=true;
-            mBuilder.setContentText("Vibration is "+a);
-            mNotificationManager.notify(324255, mBuilder.build());
-        }
     }
 }
